@@ -61,7 +61,10 @@ window.oilBasedShared = {
 
 ### Import shared component
 ```
+// Import render function from gutenberg's wrapper
 const { render } = wp.element;
+
+// Import shared component
 const { SharedComponent } = window.oilBasedShared;
 
 render( <SharedComponent />, document.getElementById( 'root' ) );
