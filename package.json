@@ -1,0 +1,37 @@
+{
+  "name": "oil-based-boilerplate",
+  "version": "0.0.1",
+  "description": "A boilerplate for developing React-powered Wordpress themes, plugins, and guten-block that using shared components.",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --config config/webpack.config.dev.js --mode=development --watch",
+    "build": "webpack --config config/webpack.config.js --mode=production"
+  },
+  "keywords": [],
+  "author": "kidunot89",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^9.3.1",
+    "babel-loader": "^8.0.4",
+    "copy-webpack-plugin": "^4.6.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "node-sass": "^4.10.0",
+    "postcss-loader": "^3.0.0",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "webpack": "^4.26.0",
+    "webpack-cli": "^3.1.2"
+  }
+}

@@ -1,0 +1,21 @@
+/*
+  Theme Name: Oil-Based Theme
+  Theme URI: https://axistaylor.com/oil-based
+  Author: kidunot89
+  Author URI: https://axistaylor.com/
+  Description: Theme for Oil-Based app/site.
+  Version: 0.0.1
+  Text Domain: oil-based
+  Tags: React.js, React-Apollo, GraphQL, WPGraphQL, Gutenberg
+*/
+.graphql-endpoint {
+  display: none; }
+
+#root {
+  opacity: 0;
+  -webkit-transition: opacity ease-out 350ms;
+  -o-transition: opacity ease-out 350ms;
+  transition: opacity ease-out 350ms; }
+
+#root.loaded {
+  opacity: 1; }
