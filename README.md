@@ -43,10 +43,10 @@ Essentially the same as without Docker you just have to symlink like the `theme`
 └── package.json 
 ```
 
-# Use Shared
+## Use Shared
 Importing by relative path between the `theme`, `app`, and `blocks` directories result is a multiple copies of the code in each resulting js file. That's where the `shared` directory comes in. `shared/index.js` should be used as an exporter as shown below.
 
-## Exporter
+### Exporter
 ```
 // Imports
 import SharedComponent from './shared-component.js';
@@ -59,7 +59,7 @@ window.oilBasedShared = {
 
 `shared/index.js` is compiled into `plugin/shared.js` and enqueued as `oil-based-shared-js` which is used as a dependency along side `wp-element` for `oil-based-theme-js`, `oil-based-app-js`, and `oil-based-block-js`. If you want to use the component exposed in the example above you could do something similar to the next example.
 
-## Import shared component
+### Import shared component
 ```
 const { render } = wp.element;
 const { SharedComponent } = window.oilBasedShared;
@@ -67,5 +67,5 @@ const { SharedComponent } = window.oilBasedShared;
 render( <SharedComponent />, document.getElementById( 'root' ) );
 ```
 
-# Thanks
+## Thanks
 - [Ahmad Awais](https://github.com/ahmadawais) and your [Create-Guten-Block](https://github.com/ahmadawais/create-guten-block) repository inspired a lot of my webpack build configuration, although I'm still working out a few of the babel-loader configurations.
