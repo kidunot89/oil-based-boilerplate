@@ -21,6 +21,7 @@ A boilerplate for developing React-powered Wordpress themes, plugins, and guten-
 Essentially the same as without Docker you just have to symlink like the `theme` and `plugin` directories to there desired location is you WordPress installation instead of Step 3. Doing this is simple but different depending on your OS.
 
 ## Folder Structure
+```
 ├── php
 │   ├── plugin - the wordpress plugin static files
 │   └── theme - the wordpress theme static files
@@ -40,6 +41,7 @@ Essentially the same as without Docker you just have to symlink like the `theme`
 ├── .gitignore
 ├── docker-compose.yml
 └── package.json 
+```
 
 # Use Shared
 Importing by relative path between the `theme`, `app`, and `blocks` directories result is a multiple copies of the code in each resulting js file. That's where the `shared` directory comes in. `shared/index.js` should be used as an exporter as shown below.
