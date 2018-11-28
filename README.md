@@ -9,16 +9,16 @@ A boilerplate for developing React-powered Wordpress themes, plugins, and guten-
 
 ## Usage with Docker (Recommended)
 - *Docker-Compose required*
-1. Clone repository `git clone https://github.com/kidunot89/oil-based-boilerplate`
-2. Run `npm run build` in project working directory.
-3. Run `docker-compose up -d` in project working directory.
+1. Clone repository `git clone https://github.com/kidunot89/oil-based-boilerplate`.
+2. Run `npm install && npm run docker-vols && npm run build` in project working directory.
+3. Run `npm run start-docker` in project working directory.
 4. Run `npm start` in project working directory.
 5. Navigate to `http://localhost:8080/` and run through the installation.
 6. Install Gutenberg on Admin dashboard, then activate `Gutenberg` and `Oil-Based` in `Plugins` as well as `Oil-Based` in `Themes`.
-7. Now you ready to code.
+7. Now you ready to code. Run `npm run stop-docker` in project working directory to stop and destroy docker containers.
 
 ## Usage w/o Docker
-Essentially the same as without Docker you just have to symlink like the `theme` and `plugin` directories to there desired location is you WordPress installation instead of Step 3. Doing this is simple but different depending on your OS.
+Essentially the same as without Docker you just have to symlink like the `theme` and `plugin` directories in `build` and all the directories in `_dev` to corresponding `themes` and `plugins` directories in you WordPress installation instead of Step 3. Doing this is simple but differs depending on your OS.
 
 ## Folder Structure
 ```

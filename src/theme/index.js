@@ -1,6 +1,21 @@
 // index.js
-import App from './app.jsx';
+import './style.scss';
 
 const { render } = wp.element;
+const { Site, Provider } = window.oilBasedShared;
 
-render( <App />, document.getElementById( 'page' ) );
+const infoDOM = document.querySelector('#site-info');
+let endpoint;
+if (infoDOM) {
+  endpoint = infoDOM.getAttribute('data-endpoint');
+  infoDOM.parentElement.removeChild(infoDOM);
+}
+
+
+render( 
+  (
+    <Provider endpoint={endpoint}>
+        <Site />
+    </Provider>
+  ),
+  document.getElementById( 'page' ) );

@@ -5,6 +5,9 @@
   "private": true,
   "main": "index.js",
   "scripts": {
+    "docker-vols": "node scripts/volumes.js",
+    "start-docker": "docker-compose up -d",
+    "stop-docker": "docker-compose down",
     "start": "webpack --config config/webpack.config.dev.js --mode=development --watch",
     "build": "webpack --config config/webpack.config.js --mode=production"
   },
@@ -12,8 +15,10 @@
   "author": "kidunot89",
   "license": "ISC",
   "dependencies": {
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "classnames": "^2.2.6",
+    "normalize-scss": "^7.0.1",
+    "react-router-dom": "^4.3.1",
+    "wp-graphql-composer": "^0.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",
@@ -25,13 +30,15 @@
     "babel-loader": "^8.0.4",
     "copy-webpack-plugin": "^4.6.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "fs-extra": "^7.0.1",
     "node-sass": "^4.10.0",
     "postcss-loader": "^3.0.0",
     "raw-loader": "^0.5.1",
     "sass-loader": "^7.1.0",
+    "simple-git": "^1.107.0",
     "style-loader": "^0.23.1",
     "uglifyjs-webpack-plugin": "^2.0.1",
-    "webpack": "^4.26.0",
+    "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2"
   }
 }

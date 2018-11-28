@@ -38,8 +38,8 @@
 			endif; ?>
 			</main><!-- #primary -->
 			<span
-				id="graphql"
-				class="graphql-endpoint"
+				id="site-info"
+				class="site-info"
 				data-endpoint="<?php oil_based_theme_the_endpoint() ?>"
 			></span>
 		</div>
