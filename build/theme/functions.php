@@ -62,10 +62,10 @@ function oil_based_theme_setup() {
 	 * Register Menu
 	 */
 	register_nav_menus(
-		array(
-			'primary'     => __( 'Main Menu' ),
-			'social'    => __( 'Social Links' ),
-		)
+		[
+			'primary'	=> __( 'Main Menu' ),
+			'social'	=> __( 'Social Links' ),
+		]
 	);
 
 	// Adding support for core block visual styles.
@@ -75,28 +75,28 @@ function oil_based_theme_setup() {
 	add_theme_support( 'align-wide' );
 	
 	// Add support for custom color scheme.
-	add_theme_support( 'editor-color-palette', array(
-		array(
+	add_theme_support( 'editor-color-palette', [
+		[
 			'name'  => __( 'Strong Blue', 'gutenbergtheme' ),
 			'slug'  => 'strong-blue',
 			'color' => '#0073aa',
-		),
-		array(
+		],
+		[
 			'name'  => __( 'Lighter Blue', 'gutenbergtheme' ),
 			'slug'  => 'lighter-blue',
 			'color' => '#229fd8',
-		),
-		array(
+		],
+		[
 			'name'  => __( 'Very Light Gray', 'gutenbergtheme' ),
 			'slug'  => 'very-light-gray',
 			'color' => '#eee',
-		),
-		array(
+		],
+		[
 			'name'  => __( 'Very Dark Gray', 'gutenbergtheme' ),
 			'slug'  => 'very-dark-gray',
 			'color' => '#444',
-		),
-	) );
+		],
+	 ] );
 
 	$GLOBALS['content_width'] = apply_filters( 'gutenbergtheme_content_width', 640 );
 
@@ -108,11 +108,11 @@ add_action( 'after_setup_theme', 'oil_based_theme_setup' );
  */
 function oil_based_theme_widgets_init() {
 	register_sidebar(
-		array(
+		[
 			'name'          => __( 'Widgets Area', $theme_name ),
 			'id'            => 'main-widgets',
 			'description'   => __( 'Add widgets here to appear in your sidebar.', $theme_name ),
-		)
+		]
 	);
 }
 add_action( 'widgets_init', 'oil_based_theme_widgets_init' );
@@ -131,13 +131,13 @@ function oil_based_theme_gutenbergtheme_fonts_url() {
 	$notoserif = esc_html_x( 'on', 'Noto Serif font: on or off', 'gutenbergtheme' );
 	if ( 'off' !== $notoserif ) {
 
-		$font_families = array();
+		$font_families = [];
 		$font_families[] = 'Noto Serif:400,400italic,700,700italic';
 
-		$query_args = array(
+		$query_args = [
 			'family' => urlencode( implode( '|', $font_families ) ),
 			'subset' => urlencode( 'latin,latin-ext' ),
-		);
+		];
 
 		$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
 	}
@@ -146,19 +146,30 @@ function oil_based_theme_gutenbergtheme_fonts_url() {
 }
 
 /**
+ * Confirms url successful
+ * 
+ * @link https://stackoverflow.com/questions/7684771/how-to-check-if-a-file-exists-from-a-url#answer-29714882
+ */
+function url_exists( $url ){
+	$headers = get_headers( $url );
+	return stripos( $headers[ 0 ],"200 OK" ) ? true : false;
+}
+
+/**
  * Queues up theme JS and CSS files to be loaded.
  */
-function oil_based_theme_enqueue_scripts() {		
-	if( file_exists( oil_based_theme_gutenbergtheme_fonts_url() ) ) {
+function oil_based_theme_enqueue_scripts() {
+	if( url_exists( oil_based_theme_gutenbergtheme_fonts_url() ) ) {
 		wp_enqueue_style( 'gutenbergtheme-fonts', oil_based_theme_gutenbergtheme_fonts_url() );
+		wp_enqueue_style( 'oil-based-theme', get_stylesheet_uri(), [ 'oil-based-shared', 'gutenbergtheme-fonts' ] );
+	} else {
+		wp_enqueue_style( 'oil-based-theme', get_stylesheet_uri(), [ 'oil-based-shared' ] );
 	}
-
-	wp_enqueue_style( 'oil-based-theme', get_stylesheet_uri(), array( 'oil-based-shared' ) );
 	
 	wp_enqueue_script(
 		'oil-based-theme-js',
 		get_template_directory_uri() . '/main.js',
-		array( 'wp-element', 'oil-based-shared-js' ),
+		[ 'wp-element', 'oil-based-shared-js' ],
 		$theme_version,
 		true
 	);
@@ -166,6 +177,6 @@ function oil_based_theme_enqueue_scripts() {
 add_action( 'wp_enqueue_scripts', 'oil_based_theme_enqueue_scripts' );
 
 function oil_based_theme_the_endpoint() {
-	$endpoint = apply_filters( 'graphql_endpoint', 'graphql' );
+	$endpoint = home_url() . '/' . apply_filters( 'graphql_endpoint', 'graphql' );
 	echo $endpoint;
 }

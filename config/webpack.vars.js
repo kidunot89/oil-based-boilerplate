@@ -64,7 +64,7 @@ const plugin = {
     cssRules( env ) {
         return [
             {
-                test: /app\/index\.s?css$/,
+                test: /app(?:.*)\.s?css$/,
                 exclude: /(node_modules|bower_components)/,
                 use: appCSSPlugin.extract( extractConfig( env ) ),
             },
@@ -79,7 +79,7 @@ const plugin = {
                 use: editBlocksCSSPlugin.extract( extractConfig( env, '@import "./src/blocks/common.scss";\n' ) ),
             },
             {
-                test: /shared\/index\.s?css$/,
+                test: /shared(?:.*)\.s?css$/,
                 exclude: /(node_modules|bower_components)/,
                 use: sharedCSSPlugin.extract( extractConfig( env ) ),
             }

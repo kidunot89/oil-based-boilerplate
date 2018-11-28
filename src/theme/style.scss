@@ -9,7 +9,7 @@
   Tags: React.js, React-Apollo, GraphQL, WPGraphQL, Gutenberg
 */
 
-.graphql-endpoint {
+.site-info {
     display: none;
 }
   
@@ -20,4 +20,111 @@
   
 #root.loaded {
     opacity: 1;
+}
+
+/*--------------------------------------------------------------
+# Normalize
+@link https://github.com/JohnAlbin/normalize-scss/blob/master/sass/_normalize.scss
+--------------------------------------------------------------*/
+@import '~normalize-scss/sass/normalize';
+/*--------------------------------------------------------------
+# Typography
+@link https://github.com/WordPress/gutenberg-starter-theme/blob/767676a4a3ad18faff69eaf7b9178eda6ea82ccc/style.css#L281
+--------------------------------------------------------------*/
+body,
+button,
+input,
+select,
+optgroup,
+textarea {
+  color: #444;
+  font-family: "Noto Serif", serif;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #32373c;
+  clear: both;
+}
+
+.entry-header h1.entry-title {
+  font-size: 2.44em;
+  line-height: 1.4;
+  margin: 1em 0;
+}
+
+dfn, cite, em, i {
+  font-style: italic;
+}
+
+blockquote {
+  margin: 0 1.5em;
+}
+
+address {
+  margin: 0 0 1.5em;
+}
+
+pre {
+  background: #eee;
+  font-family: "Courier 10 Pitch", Courier, monospace;
+  font-size: 15px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin-bottom: 1.6em;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1.6em;
+}
+
+code, kbd, tt, var {
+  font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+  font-size: 15px;
+  font-size: 0.9375rem;
+}
+
+abbr, acronym {
+  border-bottom: 1px dotted #666;
+  cursor: help;
+}
+
+mark, ins {
+  background: #fff9c0;
+  text-decoration: none;
+}
+
+big {
+  font-size: 125%;
+}
+
+.archive .site-header {
+	margin-bottom: 3.5em;
+}
+
+.site-title {
+	margin: .4375em 0 0;
+	font-size: 38px;
+	font-weight: bold;
+	line-height: 1.2;
+	color: #333332;
+}
+
+.site-title a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.site-branding {
+	margin-bottom: 1.75em;
+}
+
+.site-description {
+	margin: .4375em 0 0;
+	font-size: 17px;
+	font-weight: inherit;
+	line-height: 1.4;
+	word-wrap: break-word;
+	color: #929292;
 }

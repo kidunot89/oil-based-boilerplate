@@ -12,6 +12,9 @@ services:
       WORDPRESS_CONFIG_EXTRA: |
         define( 'WP_DEBUG', true );
     volumes:
+      - "./_dev/wp-graphql:/var/www/html/wp-content/plugins/wp-graphql"
+      - "./_dev/wp-graphiql:/var/www/html/wp-content/plugins/wp-graphiql"
+      - "./_dev/wp-graphql-jwt-authenication:/var/www/html/wp-content/plugins/wp-graphql-jwt-authenication"
       - "./build/plugin:/var/www/html/wp-content/plugins/oil-based"
       - "./build/theme:/var/www/html/wp-content/themes/oil-based"
     restart: always
