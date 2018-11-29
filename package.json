@@ -1,6 +1,6 @@
 {
   "name": "oil-based-boilerplate",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A boilerplate for developing React-powered Wordpress themes, plugins, and guten-block that using shared components.",
   "private": true,
   "main": "index.js",
