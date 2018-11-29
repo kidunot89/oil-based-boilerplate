@@ -19,7 +19,7 @@
     "classnames": "^2.2.6",
     "normalize-scss": "^7.0.1",
     "react-router-dom": "^4.3.1",
-    "wp-graphql-composer": "^0.2.0"
+    "wp-graphql-composer": "^0.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",
