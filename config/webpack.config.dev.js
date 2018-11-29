@@ -2,10 +2,9 @@
  * 
  */
 'use strict';
-const path = require( 'path' );
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 
-const { plugin, theme, shared } = require( './webpack.vars' );
+const { plugin, theme } = require( './webpack.vars' );
 
 const env = 'development';
 process.env.BABEL_ENV = env;

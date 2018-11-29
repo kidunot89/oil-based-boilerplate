@@ -1,7 +1,12 @@
 /**
- * 
+ * WebPack configuration variables used in development and production
  */
+
 'use strict';
+
+/**
+ * External dependencies
+ */
 const autoprefixer = require( 'autoprefixer' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const path = require( 'path' );
@@ -15,6 +20,14 @@ const editBlocksCSSPlugin = new ExtractTextPlugin( 'blocks.editor.css' );
 const sharedCSSPlugin = new ExtractTextPlugin( 'shared.css' );
 const themeCSSPlugin = new ExtractTextPlugin( 'style.css' );
 
+/**
+ * Returns SCSS module config
+ * 
+ * @param {string} env
+ * @param {string|null} hasCommon
+ * 
+ * @returns {object}
+ */
 function extractConfig( env, hasCommon ) {
     return {
         use: [
@@ -109,11 +122,4 @@ const theme = {
     publicPattern: { from: 'php/theme', to: '.' },
 };
 
-const shared = {
-    
-}
-
-module.exports = {
-    plugin,
-    theme,
-}
+module.exports = { plugin, theme };
