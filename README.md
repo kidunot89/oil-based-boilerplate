@@ -7,18 +7,20 @@ A boilerplate for developing React-powered Wordpress themes, plugins, and guten-
 - Docker compose file for testing. More below
 - Sass support
 
-## Usage with Docker (Recommended)
-- *Docker-Compose required*
+## Usage
 1. Clone repository `git clone https://github.com/kidunot89/oil-based-boilerplate`.
 2. Run `npm install && npm run docker-vols && npm run build` in project working directory.
-3. Run `npm run start-docker` in project working directory.
+3. (Docker only *Docker-Compose required*) Run `npm run start-docker` in project working directory.
+3. (Local Installation) Run `npm run link-wp -- <path-to-wp-install> <path-to-plugins> <path-to-themes>` in project working directory.
 4. Run `npm start` in project working directory.
 5. Navigate to `http://localhost:8080/` and run through the installation.
 6. Install Gutenberg on Admin dashboard, then activate `Gutenberg` and `Oil-Based` in `Plugins` as well as `Oil-Based` in `Themes`.
 7. Now you ready to code. Run `npm run stop-docker` in project working directory to stop and destroy docker containers.
 
-## Usage w/o Docker
-Essentially the same as without Docker you just have to symlink like the `theme` and `plugin` directories in `build` and all the directories in `_dev` to corresponding `themes` and `plugins` directories in you WordPress installation instead of Step 3. Doing this is simple but differs depending on your OS.
+## Usage w/o Docker 
+The `link-wp` script simply symlinks links the required project directories into your Wordpress installation. The issue with this is that there is a good chance the script won't work if the user who own the wordpress plugins and themes directory is not the same user as the one running the script like `www-data`. In situations like that you have two choices.
+-Change the owner of the themes and plugins directory to be the user running the script, run the script, and change the owner back to the original user.
+-Manually symlink all the directories. This means the three sub-directories in the `_dev` directory point to the plugins directory, the `build/plugin` to the plugins directory, `build/theme` to the themes directory.
 
 ## Folder Structure
 ```

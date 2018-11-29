@@ -5,7 +5,7 @@
 const UglifyJsPlugin = require( 'uglifyjs-webpack-plugin' );
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 
-const { plugin, theme, shared } = require( './webpack.vars' );
+const { plugin, theme } = require( './webpack.vars' );
 
 const env = 'production';
 process.env.BABEL_ENV = env;
