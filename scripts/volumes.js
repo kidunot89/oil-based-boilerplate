@@ -16,8 +16,9 @@ const _devDir = path.resolve( __dirname, '..', '_dev' );
 
 try {
 
-    // Create Directory if it doesn't exist
+    // Create Directory if it doesn't exist and make sure its empty.
     fs.ensureDirSync ( _devDir );
+    fs.emptyDirSync( _devDir );
 
     // Create git spawner in _dev directory
     const git = require( 'simple-git' )( _devDir );
