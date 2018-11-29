@@ -15,7 +15,8 @@ A boilerplate for developing React-powered Wordpress themes, plugins, and guten-
 4. Run `npm start` in project working directory.
 5. Navigate to `http://localhost:8080/` and run through the installation.
 6. Install Gutenberg on Admin dashboard, then activate `Gutenberg` and `Oil-Based` in `Plugins` as well as `Oil-Based` in `Themes`.
-7. Now you ready to code. Run `npm run stop-docker` in project working directory to stop and destroy docker containers.
+7. Navigate to "Permalink" under "Settings" and setting "Common Settings" to anything but "Plain".
+8. Now you ready to code. Run `npm run stop-docker` in project working directory to stop and destroy docker containers.
 
 ### Usage w/o Docker 
 The `link-wp` script simply symlinks links the required project directories into your Wordpress installation. The issue with this is that there is a good chance the script won't work if the user who owns the wordpress plugins and themes directories is not the same user as the one running the script like `www-data`. In situations like this you have two choices.
