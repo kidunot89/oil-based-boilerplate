@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Clones all github repository used as volumes in the Docker development environment
+ * Clones all github repositories used as volumes in the Docker development environment
  */
 
 'use strict';
