@@ -7,22 +7,25 @@ body {
     background-color: #ced4da;
 }
 
-article[class^="post-module"] {
-    > p,
-    > blockquote,
-    > span {
-        margin-left: 1.25em;
-        margin-right: 1.25em;
-    }
+main[role="main"] {
+    > article,
+    > article > .entry-content {
+        > p,
+        > blockquote,
+        > span {
+            margin-left: 1.25em;
+            margin-right: 1.25em;
+        }
 
-    > h1,
-    > h2,
-    > h3,
-    > h4,
-    > h5,
-    > h6 {
-        margin-left: 0.7em;
-        margin-right: 0.7em;
+        > h1,
+        > h2,
+        > h3,
+        > h4,
+        > h5,
+        > h6 {
+            margin-left: 0.7em;
+            margin-right: 0.7em;
+        }
     }
 }
 
