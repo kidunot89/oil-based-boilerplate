@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import { Header, Main, Menu, Icon } from 'wp-graphql-composer';
 import './site.scss';
 
@@ -16,11 +17,13 @@ class Site extends Component {
     }
 
     render() {
+        const { as: Container } = this.props;
         const className = classNames( "site", { toggled: this.state.toggled } );
         const toggleStyle = document.getElementById( "wpadminbar" ) ?
             { marginTop: '36px' } : {};
+
         return (
-            <div className={ className }>
+            <Container className={ className }>
                 <div className="sidebar-wrapper">
                     <Header style={ { margin: '1em auto', maxWidth: '386px' } }>
                         <Menu location="PRIMARY" />
@@ -32,9 +35,20 @@ class Site extends Component {
                     </button>
                     <Main/>
                 </div>
-            </div>
+            </Container>
         );
     }
 }
+
+Site.propTypes = {
+    as: PropTypes.oneOfType( [
+        PropTypes.string,
+        PropTypes.shape( {} ),
+    ] ),
+};
+
+Site.defaultProps = {
+    as: 'div',
+};
 
 export default Site;
