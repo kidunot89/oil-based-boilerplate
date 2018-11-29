@@ -17,4 +17,5 @@ render(
         <Site />
     </Provider>
   ),
-  document.getElementById( 'page' ) );
+  document.getElementById( 'page' )
+);
