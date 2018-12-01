@@ -122,4 +122,49 @@ const theme = {
     publicPattern: { from: 'php/theme', to: '.' },
 };
 
-module.exports = { plugin, theme };
+const resolve = {
+    modules: [
+        path.resolve( __dirname, '..', 'src' ),
+        'node_modules'
+    ],
+    extensions: [ '.wasm', '.mjs', '.js', '.json', '.jsx' ],
+};
+
+/**
+ * Given a string, returns a new string with dash separators converted to
+ * camel-case equivalent. This is not as aggressive as `_.camelCase`, which
+ * which would also upper-case letters following numbers.
+ *
+ * @param {string} string Input dash-delimited string.
+ *
+ * @return {string} Camel-cased string.
+ */
+const camelCaseDash = string => string.replace( /-([a-z])/g, ( match, letter ) => letter.toUpperCase() );
+
+const externals = [
+	'components',
+	'edit-post',
+	'element',
+	'plugins',
+	'editor',
+	'blocks',
+	'utils',
+	'date',
+	'data',
+	'i18n',
+].reduce(
+	( externals, name ) => ( {
+		...externals,
+		[ `@wordpress/${ name }` ]: `wp.${ camelCaseDash( name ) }`,
+	} ),
+	{
+		wp: 'wp',
+		ga: 'ga', // Old Google Analytics.
+		gtag: 'gtag', // New Google Analytics.
+		react: 'React', // React itself is there in Gutenberg.
+		jquery: 'jQuery', // import $ from 'jquery' // Use the WordPress version after enqueuing it.
+		'react-dom': 'ReactDOM',
+	}
+);
+
+module.exports = { plugin, theme, resolve, externals };

@@ -5,7 +5,7 @@
 const UglifyJsPlugin = require( 'uglifyjs-webpack-plugin' );
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 
-const { plugin, theme } = require( './webpack.vars' );
+const { plugin, theme, resolve, externals } = require( './webpack.vars' );
 
 const env = 'production';
 process.env.BABEL_ENV = env;
@@ -16,13 +16,7 @@ const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP === 'true';
 const prodExtra = {
     devtool: shouldUseSourceMap ? 'source-map' : false,
     stats: 'minimal',
-    externals: {
-        react: 'React',
-        'react-dom': 'ReactDOM',
-        ga: 'ga', // Old Google Analytics.
-        gtag: 'gtag', // New Google Analytics.
-        jquery: 'jQuery', // import $ from 'jquery' // Use the WordPress version.
-    },
+    externals,
 }
 
 const uglifyJsPlugin = new UglifyJsPlugin( {
@@ -108,6 +102,7 @@ module.exports = [
                     ...plugin.cssRules( env ),
                 ],
             },
+            resolve,
         },
         prodExtra
     ),
@@ -176,6 +171,7 @@ module.exports = [
                     ...theme.cssRules( env ),
                 ],
             },
+            resolve,
         },
         prodExtra,
     ),
