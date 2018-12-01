@@ -1,4 +1,8 @@
 # Changelog
+## [0.0.4]
+### Fixes
+- **Webpack Config** - Module extension support fixed
+
 ## [0.0.3]
 ### Added
 - **`npm run link-wp`** New script adding for link project directories to local WordPress installation

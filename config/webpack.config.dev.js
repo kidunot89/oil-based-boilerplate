@@ -4,7 +4,7 @@
 'use strict';
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 
-const { plugin, theme } = require( './webpack.vars' );
+const { plugin, theme, resolve, externals } = require( './webpack.vars' );
 
 const env = 'development';
 process.env.BABEL_ENV = env;
@@ -13,13 +13,7 @@ process.env.NODE_ENV = env;
 const devExtra = {
     devtool: 'cheap-eval-source-map',
     stats: 'minimal',
-    externals: {
-        react: 'React',
-        'react-dom': 'ReactDOM',
-        ga: 'ga', // Old Google Analytics.
-        gtag: 'gtag', // New Google Analytics.
-        jquery: 'jQuery', // import $ from 'jquery' // Use the WordPress version.
-    },
+    externals,
 }
 
 module.exports = [
@@ -83,6 +77,7 @@ module.exports = [
                     ...plugin.cssRules( env ),
                 ],
             },
+            resolve,
         },
         devExtra
     ),
@@ -150,6 +145,7 @@ module.exports = [
                     ...theme.cssRules( env ),
                 ],
             },
+            resolve,
         },
         devExtra,
     ),
