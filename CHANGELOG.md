@@ -1,4 +1,8 @@
 # Changelog
+## [0.0.5]
+### Changes
+- **Dependencies updated**
+
 ## [0.0.4]
 ### Fixes
 - **Webpack Config** - Module extension support fixed
