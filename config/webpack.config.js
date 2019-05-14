@@ -4,6 +4,7 @@
 'use strict';
 const UglifyJsPlugin = require( 'uglifyjs-webpack-plugin' );
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 const { plugin, theme, resolve, externals } = require( './webpack.vars' );
 
@@ -50,12 +51,10 @@ module.exports = [
                 path: plugin.build
             },
             plugins: [
-                new CopyWebpackPlugin(
-                    [ plugin.publicPattern ],
-                    { debug: 'debug' },
-                ),
+                new CopyWebpackPlugin(plugin.publicPattern, { debug: 'debug' }),
                 ...plugin.extractCSS,
                 uglifyJsPlugin,
+                new ManifestPlugin(),
             ],
             module: {
                 rules: [
@@ -111,16 +110,14 @@ module.exports = [
             entry: theme.entries,
             output: {
                 pathinfo: true,
-                filename: 'main.js',
+                filename: '[name].js',
                 path: theme.build
             },
             plugins: [
-                new CopyWebpackPlugin(
-                    [ theme.publicPattern ],
-                    { debug: 'debug' },
-                ),
+                new CopyWebpackPlugin( theme.publicPattern, { debug: 'debug' } ),
                 ...theme.extractCSS,
                 uglifyJsPlugin,
+                new ManifestPlugin(),
             ],
             module: {
                 rules: [

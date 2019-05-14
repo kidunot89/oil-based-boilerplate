@@ -2,9 +2,10 @@
  * 
  */
 'use strict';
-const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
-const { plugin, theme, resolve, externals } = require( './webpack.vars' );
+const { plugin, theme, resolve, externals } = require('./webpack.vars');
 
 const env = 'development';
 process.env.BABEL_ENV = env;
@@ -26,11 +27,9 @@ module.exports = [
                 path: plugin.build
             },
             plugins: [
-                new CopyWebpackPlugin(
-                    [ plugin.publicPattern ],
-                    { debug: 'debug' },
-                ),
+                new CopyWebpackPlugin(plugin.publicPattern, { debug: 'debug' }),
                 ...plugin.extractCSS,
+                new ManifestPlugin(),
             ],
             module: {
                 rules: [
@@ -86,15 +85,13 @@ module.exports = [
             entry: theme.entries,
             output: {
                 pathinfo: true,
-                filename: 'main.js',
+                filename: '[name].js',
                 path: theme.build
             },
             plugins: [
-                new CopyWebpackPlugin(
-                    [ theme.publicPattern ],
-                    { debug: 'debug' },
-                ),
+                new CopyWebpackPlugin(theme.publicPattern, { debug: 'debug' }),
                 ...theme.extractCSS,
+                new ManifestPlugin(),
             ],
             module: {
                 rules: [

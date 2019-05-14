@@ -98,7 +98,10 @@ const plugin = {
             }
         ];
     },
-    publicPattern: { from: 'php/plugin', to: '.' },
+    publicPattern: [
+        { from: 'php/plugin', to: '.' },
+        { from: 'php/shared', to: './includes' },
+    ],
 };
 
 /**
@@ -107,19 +110,28 @@ const plugin = {
 const theme = {
     build: path.join( root, 'build', 'theme' ),
     entries: {
-        theme: path.join( src, 'theme', 'index.js' ),
+        main: path.join( src, 'theme', 'index.js' ),
+        shared: path.join( src, 'shared', 'index.js' ),
     },
-    extractCSS: [ themeCSSPlugin ],
+    extractCSS: [ themeCSSPlugin, sharedCSSPlugin ],
     cssRules( env ) {
         return [
             {
                 test: /theme\/style\.s?css$/,
                 exclude: /(node_modules|bower_components)/,
                 use: themeCSSPlugin.extract( extractConfig( env ) ),
+            },
+            {
+                test: /shared(?:.*)\.s?css$/,
+                exclude: /(node_modules|bower_components)/,
+                use: sharedCSSPlugin.extract( extractConfig( env ) ),
             }
         ];
     },
-    publicPattern: { from: 'php/theme', to: '.' },
+    publicPattern: [
+        { from: 'php/theme', to: '.' },
+        { from: 'php/shared', to: './includes' },
+    ],
 };
 
 const resolve = {

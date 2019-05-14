@@ -1,21 +1,21 @@
 <?php
 /**
  * Oil-Based Theme functions and definitions
- * 
+ *
  * @package oil-based
  */
 
-$theme_name = 'oil-based';
+$theme_name    = 'oil-based';
 $theme_version = '0.0.1';
 
 /**
  * OilBasedTheme constants
  */
-if( ! defined( strtoupper( $theme_name ) . '_VERSION' ) ) {
+if ( ! defined( strtoupper( $theme_name ) . '_VERSION' ) ) {
 	define( strtoupper( $theme_name ) . '_VERSION', $theme_version );
 }
-if( ! defined( strtoupper( $theme_name ) . '_PATH' ) ) {
-	define( strtoupper( $theme_name ) . '_PATH', plugin_dir_path(__FILE__) );
+if ( ! defined( strtoupper( $theme_name ) . '_PATH' ) ) {
+	define( strtoupper( $theme_name ) . '_PATH', plugin_dir_path( __FILE__ ) );
 }
 
 /**
@@ -62,10 +62,10 @@ function oil_based_theme_setup() {
 	 * Register Menu
 	 */
 	register_nav_menus(
-		[
-			'primary'	=> __( 'Main Menu' ),
-			'social'	=> __( 'Social Links' ),
-		]
+		array(
+			'primary' => __( 'Main Menu' ),
+			'social'  => __( 'Social Links' ),
+		)
 	);
 
 	// Adding support for core block visual styles.
@@ -73,30 +73,33 @@ function oil_based_theme_setup() {
 
 	// Add support for full and wide align images.
 	add_theme_support( 'align-wide' );
-	
+
 	// Add support for custom color scheme.
-	add_theme_support( 'editor-color-palette', [
-		[
-			'name'  => __( 'Strong Blue', 'gutenbergtheme' ),
-			'slug'  => 'strong-blue',
-			'color' => '#0073aa',
-		],
-		[
-			'name'  => __( 'Lighter Blue', 'gutenbergtheme' ),
-			'slug'  => 'lighter-blue',
-			'color' => '#229fd8',
-		],
-		[
-			'name'  => __( 'Very Light Gray', 'gutenbergtheme' ),
-			'slug'  => 'very-light-gray',
-			'color' => '#eee',
-		],
-		[
-			'name'  => __( 'Very Dark Gray', 'gutenbergtheme' ),
-			'slug'  => 'very-dark-gray',
-			'color' => '#444',
-		],
-	 ] );
+	add_theme_support(
+		'editor-color-palette',
+		array(
+			array(
+				'name'  => __( 'Strong Blue', 'gutenbergtheme' ),
+				'slug'  => 'strong-blue',
+				'color' => '#0073aa',
+			),
+			array(
+				'name'  => __( 'Lighter Blue', 'gutenbergtheme' ),
+				'slug'  => 'lighter-blue',
+				'color' => '#229fd8',
+			),
+			array(
+				'name'  => __( 'Very Light Gray', 'gutenbergtheme' ),
+				'slug'  => 'very-light-gray',
+				'color' => '#eee',
+			),
+			array(
+				'name'  => __( 'Very Dark Gray', 'gutenbergtheme' ),
+				'slug'  => 'very-dark-gray',
+				'color' => '#444',
+			),
+		)
+	);
 
 	$GLOBALS['content_width'] = apply_filters( 'gutenbergtheme_content_width', 640 );
 
@@ -109,9 +112,9 @@ add_action( 'after_setup_theme', 'oil_based_theme_setup' );
 function oil_based_theme_widgets_init() {
 	register_sidebar(
 		[
-			'name'          => __( 'Widgets Area', $theme_name ),
-			'id'            => 'main-widgets',
-			'description'   => __( 'Add widgets here to appear in your sidebar.', $theme_name ),
+			'name'        => __( 'Widgets Area', 'oil-based' ),
+			'id'          => 'main-widgets',
+			'description' => __( 'Add widgets here to appear in your sidebar.', 'oil-based' ),
 		]
 	);
 }
@@ -131,13 +134,13 @@ function oil_based_theme_gutenbergtheme_fonts_url() {
 	$notoserif = esc_html_x( 'on', 'Noto Serif font: on or off', 'gutenbergtheme' );
 	if ( 'off' !== $notoserif ) {
 
-		$font_families = [];
+		$font_families   = array();
 		$font_families[] = 'Noto Serif:400,400italic,700,700italic';
 
-		$query_args = [
-			'family' => urlencode( implode( '|', $font_families ) ),
-			'subset' => urlencode( 'latin,latin-ext' ),
-		];
+		$query_args = array(
+			'family' => rawurlencode( implode( '|', $font_families ) ),
+			'subset' => rawurlencode( 'latin,latin-ext' ),
+		);
 
 		$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
 	}
@@ -147,36 +150,68 @@ function oil_based_theme_gutenbergtheme_fonts_url() {
 
 /**
  * Confirms url successful
- * 
+ *
+ * @param string $url URL.
+ * @return bool
+ *
  * @link https://stackoverflow.com/questions/7684771/how-to-check-if-a-file-exists-from-a-url#answer-29714882
  */
-function url_exists( $url ){
+function url_exists( $url ) {
 	$headers = get_headers( $url );
-	return stripos( $headers[ 0 ],"200 OK" ) ? true : false;
+	return stripos( $headers[0], '200 OK' ) ? true : false;
 }
 
 /**
  * Queues up theme JS and CSS files to be loaded.
  */
 function oil_based_theme_enqueue_scripts() {
-	if( url_exists( oil_based_theme_gutenbergtheme_fonts_url() ) ) {
-		wp_enqueue_style( 'gutenbergtheme-fonts', oil_based_theme_gutenbergtheme_fonts_url() );
-		wp_enqueue_style( 'oil-based-theme', get_stylesheet_uri(), [ 'oil-based-shared', 'gutenbergtheme-fonts' ] );
+	if ( url_exists( oil_based_theme_gutenbergtheme_fonts_url() ) ) {
+		wp_enqueue_style(
+			'gutenbergtheme-fonts',
+			oil_based_theme_gutenbergtheme_fonts_url(),
+			array(),
+			$theme_version
+		);
+		wp_enqueue_style(
+			'oil-based-theme',
+			get_stylesheet_uri(),
+			array( 'oil-based-shared', 'gutenbergtheme-fonts' ),
+			$theme_version
+		);
 	} else {
-		wp_enqueue_style( 'oil-based-theme', get_stylesheet_uri(), [ 'oil-based-shared' ] );
+		wp_enqueue_style(
+			'oil-based-theme',
+			get_stylesheet_uri(),
+			array( 'oil-based-shared' ),
+			$theme_version
+		);
 	}
-	
+
 	wp_enqueue_script(
 		'oil-based-theme-js',
 		get_template_directory_uri() . '/main.js',
-		[ 'wp-element', 'oil-based-shared-js' ],
+		array( 'wp-element', 'oil-based-shared-js' ),
 		$theme_version,
 		true
 	);
 }
 add_action( 'wp_enqueue_scripts', 'oil_based_theme_enqueue_scripts' );
 
+/**
+ * Echoes url to the WPGraphQL Endpoint
+ */
 function oil_based_theme_the_endpoint() {
 	$endpoint = home_url() . '/' . apply_filters( 'graphql_endpoint', 'graphql' );
-	echo $endpoint;
+	esc_url( $endpoint );
 }
+
+// Includes shared dependencies.
+require_once get_template_directory() . '/includes/settings-patch.php';
+require_once get_template_directory() . '/includes/schema-patch.php';
+
+// Set shared dependencies.
+$shared_css_path = get_template_directory_uri() . '/shared.css';
+$shared_js_path  = get_template_directory_uri() . '/shared.js';
+$shared_version  = '0.0.1';
+$target          = 'the Oil-Based theme';
+require_once get_template_directory() . '/includes/enqueue-scripts.php';
