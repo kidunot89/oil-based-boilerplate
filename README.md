@@ -27,6 +27,7 @@ The `link-wp` script simply symlinks links the required project directories into
 ```
 ├── php
 │   ├── plugin - the wordpress plugin static files
+|   ├── shared - the shared static includes files
 │   └── theme - the wordpress theme static files
 ├── src
 │   ├── app
